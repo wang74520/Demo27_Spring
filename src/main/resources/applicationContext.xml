@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <!-- 扫描entity包下加了注解的类，如果扫描到了会把该类假如到spring容器中，没有就不加 -->
+    <context:component-scan base-package="entity" />
+
+    <!-- 依赖注入:构造器注入 -->
+<!--    <bean lazy-init="true" class="entity.Student" id="stu" init-method="init" destroy-method="destory">
+        <constructor-arg index="0" value="123" ></constructor-arg>
+        <constructor-arg index="1" value="张三" ></constructor-arg>
+        <constructor-arg index="2" value="男" ></constructor-arg>
+    </bean>-->
+
+    <!-- 依赖注入:Setter注入 -->
+    <bean lazy-init="true" class="entity.Student" id="student" init-method="init" destroy-method="destory">
+        <property name="id" value="456"></property>
+        <property name="name" value="李四"></property>
+        <property name="gender" value="男"></property>
+    </bean>
+
+    <bean class="entity.Teacher" id="tea" autowire="byName">
+        <property name="name" value="王五"></property>
+        <property name="age" value="20"></property>
+    </bean>
+
+
+
+</beans>
